@@ -1,16 +1,12 @@
 package com.example.yourlist.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.yourlist.MainActivity
+import androidx.fragment.app.Fragment
 import com.example.yourlist.R
 import com.example.yourlist.databinding.FragmentMainBinding
-import com.example.yourlist.databinding.FragmentRecoveryBinding
-import com.example.yourlist.fragments.authentication.LoginFragment
-import com.google.firebase.auth.FirebaseAuth
 
 
 class MainFragment : Fragment() {
@@ -24,13 +20,40 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         binding = FragmentMainBinding.bind(view)
 
-        binding.button.setOnClickListener{
-            FirebaseAuth.getInstance().signOut()
-            (activity as MainActivity).changeFragment(LoginFragment())
-        }
+        listeners()
+//        binding.button.setOnClickListener{
+//            FirebaseAuth.getInstance().signOut()
+//            (activity as MainActivity).changeFragment(LoginFragment())
+//        }
 
         return view
     }
 
 
+    private fun listeners(){
+        binding.bottomNavigation.setOnItemSelectedListener  {
+            when(it.itemId){
+                R.id.nav_create -> {
+                    changeFragment(CreateFragment())
+                    true
+                }
+                R.id.nav_main -> {
+                    changeFragment(ListFragment())
+                    true
+                }
+                R.id.nav_settings -> {
+                    changeFragment(SettingsFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun changeFragment(fragment: Fragment){
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.content_holder,fragment)
+            commit()
+        }
+    }
 }
