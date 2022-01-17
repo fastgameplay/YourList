@@ -8,12 +8,21 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.yourlist.MainActivity
 import com.example.yourlist.R
+import com.example.yourlist.Validate
 import com.example.yourlist.databinding.FragmentLoginBinding
+import com.example.yourlist.fragments.MainFragment
+import com.google.firebase.auth.FirebaseAuth
 
 
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //isAuthorised check
+        if (FirebaseAuth.getInstance().currentUser != null) (activity as MainActivity).changeFragment(MainFragment())
+
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,8 +37,22 @@ class LoginFragment : Fragment() {
 
     private fun onClickListeners(){
         binding.btnLogin.setOnClickListener{
-//          TODO: sing in logic via firebase
-            Toast.makeText(requireActivity(), "sing in logic is not implemented yet", Toast.LENGTH_SHORT).show()
+            if(!Validate.email(binding.inputLoginField.text.toString())){
+                binding.inputLoginHolder.error = "Invalid Email address"
+                return@setOnClickListener
+            }
+            //Sign In
+            FirebaseAuth.getInstance()
+                .signInWithEmailAndPassword(binding.inputLoginField.text.toString(),binding.inputPasswordField.text.toString())
+                .addOnCompleteListener{task ->
+                    if(task.isSuccessful){
+                        (activity as MainActivity).changeFragment(MainFragment())
+                    }else{
+                        Toast.makeText(requireContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
+                        binding.inputPasswordHolder.error = "Invalid Password"
+                    }
+                }
+
         }
         binding.btnToRecovery.setOnClickListener{
             (activity as MainActivity).changeFragment(RecoveryFragment())
