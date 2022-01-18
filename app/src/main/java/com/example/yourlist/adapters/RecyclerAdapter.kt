@@ -16,7 +16,7 @@ open class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemName.text = "${position+1})" + DataHolder.Todos[position].name
+        holder.itemName.text = "${position+1})" + DataHolder.Todos!![position].name
     }
 
     override fun getItemCount(): Int = DataHolder.amount()

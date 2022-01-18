@@ -13,6 +13,7 @@ import com.example.yourlist.databinding.FragmentCreateBinding
 import com.example.yourlist.data.DataHolder
 import com.example.yourlist.data.Todo
 import com.example.yourlist.data.TodoList
+import com.example.yourlist.fragments.MainFragment
 
 
 class CreateFragment : Fragment() {
@@ -47,7 +48,7 @@ class CreateFragment : Fragment() {
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
                 list.add(Todo(binding.inputTaskField.text.toString(),false))
                 var tempText = ""
-                for(i in 0 until list.count()){tempText += "${i})" + list[i].text + "\n"}
+                for(i in 0 until list.count()){tempText += "${i+1})" + list[i].text + "\n"}
                 binding.inputTaskField.text?.clear()
                 binding.TodoHolder.text = tempText
 
@@ -68,6 +69,7 @@ class CreateFragment : Fragment() {
             if(Validate.listName(binding.inputNameField.text.toString())){
                 if(list.count() > 0) {
                     DataHolder.addToData(TodoList(binding.inputNameField.text.toString(),list))
+                    DataHolder.mainActivity.changeFragment(MainFragment())
                 }
             }
         }

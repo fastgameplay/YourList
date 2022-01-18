@@ -13,6 +13,8 @@ import com.example.yourlist.data.Validate
 import com.example.yourlist.databinding.FragmentLoginBinding
 import com.example.yourlist.fragments.MainFragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class LoginFragment : Fragment() {
@@ -21,9 +23,13 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //isAuthorised check
-        if (FirebaseAuth.getInstance().currentUser != null) (activity as MainActivity).changeFragment(
-            MainFragment()
-        )
+        if (FirebaseAuth.getInstance().currentUser != null){
+            val database = Firebase.database
+
+
+            (activity as MainActivity).changeFragment(MainFragment())
+
+        }
 
     }
     override fun onCreateView(

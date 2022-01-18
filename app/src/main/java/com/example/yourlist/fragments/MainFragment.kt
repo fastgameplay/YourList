@@ -14,8 +14,9 @@ import com.example.yourlist.fragments.main.SettingsFragment
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding: FragmentMainBinding
 
+
+    private lateinit var binding: FragmentMainBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +24,8 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
         binding = FragmentMainBinding.bind(view)
 
+
+        changeFragment(ListFragment())
         listeners()
 //        binding.button.setOnClickListener{
 //            FirebaseAuth.getInstance().signOut()
@@ -37,10 +40,12 @@ class MainFragment : Fragment() {
         binding.bottomNavigation.setOnItemSelectedListener  {
             when(it.itemId){
                 R.id.nav_create -> {
+//                    DataHolder.updateDB()
                     changeFragment(CreateFragment())
                     true
                 }
                 R.id.nav_main -> {
+//                    DataHolder.uploadDB()
                     changeFragment(ListFragment())
                     true
                 }

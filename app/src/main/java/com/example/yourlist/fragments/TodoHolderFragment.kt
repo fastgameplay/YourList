@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yourlist.R
-import com.example.yourlist.adapters.RecyclerAdapter
+import com.example.yourlist.adapters.RecyclerAdapter2
 import com.example.yourlist.data.DataHolder
 import com.example.yourlist.databinding.FragmentTodoHolderBinding
 
@@ -16,7 +16,7 @@ import com.example.yourlist.databinding.FragmentTodoHolderBinding
 class TodoHolderFragment : Fragment() {
     private lateinit var binding: FragmentTodoHolderBinding
     private var layoutManager: RecyclerView.LayoutManager? = null
-    private var adapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>? = null
+    private var adapter: RecyclerView.Adapter<RecyclerAdapter2.ViewHolder>? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +27,7 @@ class TodoHolderFragment : Fragment() {
 
         layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.layoutManager = layoutManager
-        adapter = RecyclerAdapter()
+        adapter = RecyclerAdapter2()
         binding.recyclerView.adapter = adapter
 
         binding.btnDone.setOnClickListener{
