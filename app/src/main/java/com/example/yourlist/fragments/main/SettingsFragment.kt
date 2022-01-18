@@ -18,16 +18,17 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+        val view = inflater.inflate(R.layout.fragment_settings, container, false)
+        binding = FragmentSettingsBinding.bind(view)
+        OnClickListeners()
+        return view
     }
 
     fun OnClickListeners() {
         binding.btnLogout.setOnClickListener {
-            binding.button.setOnClickListener {
-                FirebaseAuth.getInstance().signOut()
-                DataHolder.mainActivity.changeFragment(LoginFragment())
-            }
+            FirebaseAuth.getInstance().signOut()
+            DataHolder.mainActivity.changeFragment(LoginFragment())
+
 
         }
 

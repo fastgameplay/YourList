@@ -18,8 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        //write file to internal storage
-        //TODO: WriteFIle to firebase storage
+
     }
     fun changeFragment(fragment: Fragment){
         supportFragmentManager.beginTransaction().apply {
