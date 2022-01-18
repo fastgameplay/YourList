@@ -9,7 +9,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import com.example.yourlist.MainActivity
 import com.example.yourlist.R
-import com.example.yourlist.Validate
+import com.example.yourlist.data.DataHolder
+import com.example.yourlist.data.Validate
 import com.example.yourlist.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -48,7 +49,7 @@ class RegisterFragment : Fragment() {
                 .createUserWithEmailAndPassword(binding.inputMailField.text.toString(),binding.inputPasswordField.text.toString())
                 .addOnCompleteListener{task ->
                     if(task.isSuccessful){
-                        (activity as MainActivity).changeFragment(LoginFragment())
+                        DataHolder.mainActivity.changeFragment(LoginFragment())
                     } else {
                         binding.inputMailHolder.error = "This Email address already registered"
                         Toast.makeText(requireContext(), "Please fill all required fields", Toast.LENGTH_SHORT).show()
@@ -59,7 +60,7 @@ class RegisterFragment : Fragment() {
 
 
         binding.btnToLogin.setOnClickListener{
-            (activity as MainActivity).changeFragment(LoginFragment())
+            DataHolder.mainActivity.changeFragment(LoginFragment())
         }
     }
     private fun onTextChangeListeners() {

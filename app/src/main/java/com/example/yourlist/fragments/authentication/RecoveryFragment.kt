@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.yourlist.MainActivity
 import com.example.yourlist.R
-import com.example.yourlist.Validate
+import com.example.yourlist.data.DataHolder
+import com.example.yourlist.data.Validate
 import com.example.yourlist.databinding.FragmentRecoveryBinding
-import com.example.yourlist.fragments.MainFragment
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -42,7 +42,7 @@ class RecoveryFragment : Fragment() {
                 .addOnCompleteListener{task ->
                     if(task.isSuccessful){
                         Toast.makeText(requireContext(), "Recovery instructions sent successfully \n Please check your Email inbox", Toast.LENGTH_LONG).show()
-                        (activity as MainActivity).changeFragment(LoginFragment())
+                        DataHolder.mainActivity.changeFragment(LoginFragment())
                     } else {
                         binding.inputRecoveryHolder.error="Invalid Email"
                     }
@@ -51,10 +51,10 @@ class RecoveryFragment : Fragment() {
             Toast.makeText(requireActivity(), "Recovery logic is not implemented yet", Toast.LENGTH_SHORT).show()
         }
         binding.btnToLogin.setOnClickListener{
-            (activity as MainActivity).changeFragment(LoginFragment())
+            DataHolder.mainActivity.changeFragment(LoginFragment())
         }
         binding.btnToRegister.setOnClickListener{
-            (activity as MainActivity).changeFragment(RegisterFragment())
+            DataHolder.mainActivity.changeFragment(RegisterFragment())
         }
     }
 

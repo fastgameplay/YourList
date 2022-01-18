@@ -8,7 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.yourlist.MainActivity
 import com.example.yourlist.R
-import com.example.yourlist.Validate
+import com.example.yourlist.data.DataHolder
+import com.example.yourlist.data.Validate
 import com.example.yourlist.databinding.FragmentLoginBinding
 import com.example.yourlist.fragments.MainFragment
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,9 @@ class LoginFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //isAuthorised check
-        if (FirebaseAuth.getInstance().currentUser != null) (activity as MainActivity).changeFragment(MainFragment())
+        if (FirebaseAuth.getInstance().currentUser != null) (activity as MainActivity).changeFragment(
+            MainFragment()
+        )
 
     }
     override fun onCreateView(
@@ -29,6 +32,7 @@ class LoginFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login, container, false)
         binding = FragmentLoginBinding.bind(view)
+        DataHolder.mainActivity = (activity as MainActivity)
 
         onClickListeners()
 
@@ -46,7 +50,7 @@ class LoginFragment : Fragment() {
                 .signInWithEmailAndPassword(binding.inputLoginField.text.toString(),binding.inputPasswordField.text.toString())
                 .addOnCompleteListener{task ->
                     if(task.isSuccessful){
-                        (activity as MainActivity).changeFragment(MainFragment())
+                        DataHolder.mainActivity.changeFragment(MainFragment())
                     }else{
                         Toast.makeText(requireContext(), "Incorrect Email or Password", Toast.LENGTH_SHORT).show()
                         binding.inputPasswordHolder.error = "Invalid Password"
@@ -55,10 +59,10 @@ class LoginFragment : Fragment() {
 
         }
         binding.btnToRecovery.setOnClickListener{
-            (activity as MainActivity).changeFragment(RecoveryFragment())
+            DataHolder.mainActivity.changeFragment(RecoveryFragment())
         }
         binding.btnToRegister.setOnClickListener{
-            (activity as MainActivity).changeFragment(RegisterFragment())
+            DataHolder.mainActivity.changeFragment(RegisterFragment())
         }
     }
 

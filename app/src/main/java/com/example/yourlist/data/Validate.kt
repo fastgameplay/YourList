@@ -1,10 +1,18 @@
-package com.example.yourlist
+package com.example.yourlist.data
 
 class Validate {
     companion object{
         fun email(input : String):Boolean{
             if(input.isNotEmpty() && input.contains(Regex("\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}")) ) return true
             return false
+        }
+
+        fun listName(input: String):Boolean{
+            return when {
+                input.length < 4 -> false
+                input.length > 20 -> false
+                else -> true
+            }
         }
         fun username(input: String):Boolean{
             return (input.length <21)
