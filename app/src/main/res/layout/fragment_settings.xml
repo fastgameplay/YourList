@@ -36,27 +36,27 @@
         app:layout_optimizationLevel="ratio" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_download"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="12dp"
-        android:text="Upload local database"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:text="Download Data"
+        app:layout_constraintBottom_toTopOf="@+id/btn_upload"
         app:layout_constraintDimensionRatio="h,7:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_optimizationLevel="ratio" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_upload"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="12dp"
-        android:text="Update database"
+        android:text="Upload Data"
         app:layout_constraintBottom_toTopOf="@+id/btn_logout"
         app:layout_constraintDimensionRatio="H,7:1"
         app:layout_constraintEnd_toEndOf="parent"

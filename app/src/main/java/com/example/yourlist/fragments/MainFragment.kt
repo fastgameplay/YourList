@@ -27,10 +27,6 @@ class MainFragment : Fragment() {
 
         changeFragment(ListFragment())
         listeners()
-//        binding.button.setOnClickListener{
-//            FirebaseAuth.getInstance().signOut()
-//            DataHolder.mainActivity.changeFragment(LoginFragment())
-//        }
 
         return view
     }

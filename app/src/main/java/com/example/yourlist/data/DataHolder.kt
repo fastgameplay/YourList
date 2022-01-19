@@ -7,8 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 object DataHolder {
     var mainActivity: MainActivity = MainActivity()
-//    private val auth = FirebaseAuth.getInstance()
-//    private val db: DatabaseReference = FirebaseDatabase.getInstance().getReference("DataBase")
+
     private var todos : MutableList<TodoList> = mutableListOf()
     var Todos: MutableList<TodoList> = mutableListOf()
         get() = todos
@@ -16,9 +15,7 @@ object DataHolder {
     private var position : Int = 0
     var Position : Int
         get() = position
-        set(value) {
-            position = value
-        }
+        set(value) {position = value}
 //    check version according to server last version
 //    private var version:String = "0"
 
@@ -28,10 +25,9 @@ object DataHolder {
 //    fun updateDB(){
 //
 //    }
-//    fun uploadDB(){
-//        db.child(auth.currentUser?.uid!!).setValue(Todos)
-//
-//    }
+    fun setData(list : MutableList<TodoList>){
+        todos = list
+    }
     fun addToData(todoList: TodoList ){
         todos.add(todoList)
     }

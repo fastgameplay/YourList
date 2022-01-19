@@ -7,9 +7,6 @@ import android.widget.CheckBox
 import androidx.recyclerview.widget.RecyclerView
 import com.example.yourlist.R
 import com.example.yourlist.data.DataHolder
-import android.widget.CompoundButton
-
-
 
 
 open class RecyclerAdapter2 : RecyclerView.Adapter<RecyclerAdapter2.ViewHolder>() {
@@ -19,18 +16,18 @@ open class RecyclerAdapter2 : RecyclerView.Adapter<RecyclerAdapter2.ViewHolder>(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.checkBox.setOnCheckedChangeListener(null);
+        holder.checkBox.setOnCheckedChangeListener(null)
 
-        holder.checkBox.isChecked = DataHolder.Todos!![DataHolder.Position].todoList[position].isDone;
+        holder.checkBox.isChecked = DataHolder.Todos[DataHolder.Position].todoList[position].isDone
 
-        holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            DataHolder.Todos!![DataHolder.Position].todoList[position].isDone = isChecked
+        holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            DataHolder.Todos[DataHolder.Position].todoList[position].isDone = isChecked
         }
 
-        holder.checkBox.text = DataHolder.Todos!![DataHolder.Position].todoList[position].text
+        holder.checkBox.text = DataHolder.Todos[DataHolder.Position].todoList[position].text
     }
 
-    override fun getItemCount(): Int = DataHolder.Todos!![DataHolder.Position].todoList.count()
+    override fun getItemCount(): Int = DataHolder.Todos[DataHolder.Position].todoList.count()
 
 
 

@@ -30,6 +30,8 @@ class ListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
         return view
     }
-
+    fun refresh(){
+        binding.recyclerView.adapter = adapter
+    }
    
 }
